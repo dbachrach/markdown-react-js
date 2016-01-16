@@ -186,26 +186,24 @@ function mdReactFactory(options={}) {
   };
 }
 
-class MDReactComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string.isRequired,
-    onIterate: PropTypes.func,
-    onGenerateKey: PropTypes.func,
-    tags: PropTypes.object,
-    presetName: PropTypes.string,
-    markdownOptions: PropTypes.object,
-    enableRules: PropTypes.array,
-    disableRules: PropTypes.array,
-    convertRules: PropTypes.object,
-    plugins: PropTypes.array,
-    className: PropTypes.string
-  }
+const MDReactComponent = props => {
+  const { text, ...propsWithoutText } = props;
+  return mdReactFactory(propsWithoutText)(text);
+};
 
-  render() {
-    const { text, ...props } = this.props;
-    return mdReactFactory(props)(text);
-  }
-}
+MDReactComponent.propTypes = {
+  text: PropTypes.string.isRequired,
+  onIterate: PropTypes.func,
+  onGenerateKey: PropTypes.func,
+  tags: PropTypes.object,
+  presetName: PropTypes.string,
+  markdownOptions: PropTypes.object,
+  enableRules: PropTypes.array,
+  disableRules: PropTypes.array,
+  convertRules: PropTypes.object,
+  plugins: PropTypes.array,
+  className: PropTypes.string
+};
 
 export default MDReactComponent;
 export { mdReactFactory as mdReact };
