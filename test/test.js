@@ -43,6 +43,13 @@ function firstLevelCallback(tag, props, children, level) {
 }
 
 describe('Markdown tests', () => {
+  it('should set root element class to value in className property', () => {
+    assert.equal(
+      render('some text', { className: 'test-class' }),
+      '<span class="test-class"><p>some text</p></span>'
+    );
+  });
+
   it('should work with headers', () => {
     assert.equal(
       render('# This is an <h1> tag\n## This is an <h2> tag\n###### This is an <h6> tag'),
