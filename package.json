@@ -1,6 +1,6 @@
 {
   "name": "markdown-react-js",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Markdown to React Component converter",
   "main": "lib/index.js",
   "directories": {
@@ -34,7 +34,8 @@
     "webpack": "^1.8.11"
   },
   "peerDependencies": {
-    "react": ">=0.13.2"
+    "react": "0.14.x",
+    "react-dom" : "0.14.x"
   },
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --compilers js:babelhook --recursive --reporter spec --timeout 3000",

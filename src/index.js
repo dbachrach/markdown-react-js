@@ -137,6 +137,10 @@ function mdReactFactory(options={}) {
     md
   );
 
+  function renderChildren(tag) {
+    return tag !== 'img';
+  }
+
   function iterateTree(tree, level=0, index=0) {
     let tag = tree.shift();
     const key = onGenerateKey(tag, index);
@@ -173,7 +177,7 @@ function mdReactFactory(options={}) {
 
     return (typeof onIterate === 'function') ?
       onIterate(tag, props, children, level) :
-      React.createElement(tag, props, children);
+      React.createElement(tag, props, renderChildren(tag) ? children : undefined);
   }
 
   return function(text) {
