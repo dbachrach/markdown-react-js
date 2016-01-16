@@ -50,6 +50,13 @@ describe('Markdown tests', () => {
     );
   });
 
+  it('should set root element inline style to styles provided in style property', () => {
+    assert.equal(
+      render('some text', { style: { color: 'red', fontSize: 20 } }),
+      '<span style="color:red;font-size:20px;"><p>some text</p></span>'
+    );
+  });
+
   it('should work with headers', () => {
     assert.equal(
       render('# This is an <h1> tag\n## This is an <h2> tag\n###### This is an <h6> tag'),
