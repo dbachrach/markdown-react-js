@@ -111,11 +111,18 @@ function convertTree(tokens, convertRules, options) {
 }
 
 function mdReactFactory(options={}) {
-  const { onIterate, tags=DEFAULT_TAGS,
-    presetName, markdownOptions,
-    enableRules=[], disableRules=[], plugins=[],
-    onGenerateKey=(tag, index) => `mdrct-${tag}-${index}`,
-    className } = options;
+  const {
+    onIterate,
+    tags = DEFAULT_TAGS,
+    presetName,
+    markdownOptions,
+    enableRules = [],
+    disableRules = [],
+    plugins = [],
+    onGenerateKey = (tag, index) => `mdrct-${tag}-${index}`,
+    className,
+    style
+  } = options;
 
   let md = markdown(markdownOptions || presetName)
     .enable(enableRules)
@@ -138,9 +145,15 @@ function mdReactFactory(options={}) {
       assign(tree.shift(), { key }) :
       { key };
 
-    if (level === 0 && className) {
-      props.className = className;
+    if (level === 0) {
+      if (className) {
+        props.className = className;
+      }
+      if (style) {
+        props.style = style;
+      }
     }
+
 
     const children = tree.map(
       (branch, idx) => Array.isArray(branch) ?
