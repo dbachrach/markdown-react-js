@@ -120,8 +120,7 @@ function mdReactFactory(options={}) {
     disableRules = [],
     plugins = [],
     onGenerateKey = (tag, index) => `mdrct-${tag}-${index}`,
-    className,
-    style
+    ...rootElementProps
   } = options;
 
   let md = markdown(markdownOptions || presetName)
@@ -145,19 +144,13 @@ function mdReactFactory(options={}) {
     let tag = tree.shift();
     const key = onGenerateKey(tag, index);
 
-    const props = (tree.length && isPlainObject(tree[0])) ?
-      assign(tree.shift(), { key }) :
-      { key };
+    let props = (tree.length && isPlainObject(tree[0])) ?
+                  assign(tree.shift(), { key }) :
+                  { key };
 
     if (level === 0) {
-      if (className) {
-        props.className = className;
-      }
-      if (style) {
-        props.style = style;
-      }
+      props = { ...props, ...rootElementProps };
     }
-
 
     const children = tree.map(
       (branch, idx) => Array.isArray(branch) ?
