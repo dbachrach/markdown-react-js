@@ -5,7 +5,7 @@ import React, { PropTypes, Component } from 'react';
 import isPlainObject from 'lodash.isplainobject';
 import assign from 'lodash.assign';
 import reduce from 'lodash.reduce';
-import zipObject from 'lodash.zipobject';
+import fromPairs from 'lodash.frompairs';
 import sortBy from 'lodash.sortby';
 import compact from 'lodash.compact';
 import camelCase from 'lodash.camelcase';
@@ -95,7 +95,7 @@ function convertTree(tokens, convertRules, options) {
 
     let token = tkns.shift();
     while (token && token.nesting !== -1) {
-      const attrs = token.attrs && zipObject(sortBy(token.attrs, 0));
+      const attrs = token.attrs && fromPairs(sortBy(token.attrs, 0));
       const children = token.children && convertBranch(token.children.slice(), true);
       const rule = convertRules[camelCase(token.type)] || convertRules.default;
 
@@ -161,7 +161,7 @@ function mdReactFactory(options={}) {
     tag = tags[tag] || tag;
 
     if (isString(props.style)) {
-      props.style = zipObject(
+      props.style = fromPairs(
         props.style.split(';')
           .map(prop => prop.split(':'))
           .map(keyVal => [camelCase(keyVal[0].trim()), keyVal[1].trim()])

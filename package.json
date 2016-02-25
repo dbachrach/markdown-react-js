@@ -11,11 +11,11 @@
     "lodash.assign": "^4.0.4",
     "lodash.camelcase": "^4.1.0",
     "lodash.compact": "^3.0.0",
+    "lodash.frompairs": "^4.0.1",
     "lodash.isplainobject": "^4.0.3",
     "lodash.isstring": "^4.0.1",
     "lodash.reduce": "^4.2.0",
     "lodash.sortby": "^4.2.0",
-    "lodash.zipobject": "^4.1.2",
     "markdown-it": "^6.0.0"
   },
   "devDependencies": {
