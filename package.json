@@ -41,8 +41,8 @@
     "webpack": "^1.8.11"
   },
   "peerDependencies": {
-    "react": "0.14.x",
-    "react-dom": "0.14.x"
+    "react": "0.14.x || ^15.0.0",
+    "react-dom": "0.14.x || ^15.0.0"
   },
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --compilers js:babelhook --recursive --reporter spec --timeout 3000",
